@@ -42,3 +42,30 @@ src/
  └── app.js
 
  
+ ## To make this production-ready:
+ - Add new payment method WITHOUT modifying existing code 
+ - Add Database (MongoDB / PostgreSQL) 
+ - Add Validation (Joi / Zod) 
+ - Add Logging (Winston) 
+ - Add Error Handling Middleware 
+ - Add Rate Limiter Middleware 
+ - Add Unit Tests (Jest) 
+ - Use DI Framework (like inversify)
+
+## production-ready Architecture
+src/
+ ├── config/              # DB, logger, env
+ ├── controllers/
+ ├── services/
+ ├── repositories/
+ ├── interfaces/
+ ├── implementations/
+ ├── middlewares/
+ ├── validators/
+ ├── utils/
+ ├── container/           # DI (Inversify)
+ ├── models/
+ ├── tests/
+ └── app.js
+
+ 
