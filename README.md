@@ -68,4 +68,32 @@ src/
  ├── tests/
  └── app.js
 
+## production-style Node.js project that includes:
+✅ SOLID + Clean Architecture
+✅ PostgreSQL (via Prisma)
+✅ JWT Authentication + Role-Based Access
+✅ Validation (Zod), Logging (Winston), Rate limiting, Error handling
+✅ DI (Inversify), Unit tests (Jest)
+
+solid-based-project/
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── services/
+│   ├── repositories/
+│   ├── interfaces/
+│   ├── implementations/
+│   ├── middlewares/
+│   ├── validators/
+│   ├── container/
+│   ├── models/
+│   ├── utils/
+│   └── app.js
+├── prisma/
+│   └── schema.prisma
+├── tests/
+├── .env
+├── package.json
+└── README.md
+
  
