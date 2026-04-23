@@ -1,14 +1,12 @@
+import OrderModel from "../models/OrderModel";
+
 class OrderRepository {
-    constructor() {
-        this.orders = [];
+    async save(order) {
+        return await OrderModel.create(order);
     }
 
-    save(order) {
-        this.orders.push(order);
-    }
-
-    findAll() {
-        return this.orders;
+    async findAll() {
+        return await OrderModel.find();
     }
 }
 
