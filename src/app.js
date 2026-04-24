@@ -1,12 +1,12 @@
 import express from "express";
 const app = express();
 
-const connectDB = require("./config/db");
-const limiter = require("./middlewares/rateLimiter");
-const errorHandler = require("./middlewares/errorHandler");
+import connectDB from "./config/db";
+import limiter from "./middlewares/rateLimiter";
+import errorHandler from "./middlewares/errorHandler";
 
-const container = require("./container/container");
-const TYPES = require("./container/types");
+import container from "./container/container";
+import TYPES from "./container/types";
 
 app.use(express.json());
 app.use(limiter);
