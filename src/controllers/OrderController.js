@@ -1,18 +1,24 @@
 import express from "express";
-import auth from "../middlewares/authMiddleware";
-import authorize from "../middlewares/roleMiddleware";
+import auth from "../middlewares/authMiddleware.js";
+import authorize from "../middlewares/roleMiddleware.js";
 
-export default (orderService) => {
-    const router = express.Router();
+class OrderController {
+    constructor(orderService) {
+        this.orderService = orderService;
+    }
+    router = express.Router();
+    setupRoutes() {
+        this.router.post("/order", auth, authorize("ADMIN"), async (req, res, next) => {
+            try {
+                const order = await this.orderService.createOrder(req.body);
+                res.json(order);
+            } catch (err) {
+                next(err);
+            }
+        });
 
-    router.post("/order", auth, authorize("ADMIN"), async (req, res, next) => {
-        try {
-            const order = await orderService.createOrder(req.body);
-            res.json(order);
-        } catch (err) {
-            next(err);
-        }
-    });
+        return this.router;
+    }
+}
 
-    return router;
-};
+export default OrderController;

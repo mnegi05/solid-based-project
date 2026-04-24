@@ -8,7 +8,9 @@ import PaymentService from "../services/PaymentService.js";
 import CryptoPayment from "../implementations/CryptoPayment.js";
 import AuthService from "../services/AuthService.js";
 import UserRepository from "../repositories/UserRepository.js";
-
+import OrderRepository from "../repositories/OrderRepository.js";
+import NotificationService from "../services/NotificationService.js";
+import EmailNotification from "../implementations/EmailNotification.js";
 const container = new Container();
 
 container.bind(TYPES.PaymentService).toDynamicValue(() => {
@@ -17,10 +19,10 @@ container.bind(TYPES.PaymentService).toDynamicValue(() => {
 
 container.bind(TYPES.OrderService).toDynamicValue((context) => {
     return new OrderService(
-        new (require("../repositories/OrderRepository.js"))(),
-        context.container.get(TYPES.PaymentService),
-        new (require("../services/NotificationService.js"))(
-            new (require("../implementations/EmailNotification.js"))()
+        new (OrderRepository)(),
+        context.get(TYPES.PaymentService),
+        new NotificationService(
+            new EmailNotification()
         )
     );
 });
@@ -31,7 +33,7 @@ container.bind(TYPES.UserRepository).toDynamicValue(() => {
 
 container.bind(TYPES.AuthService).toDynamicValue((context) => {
     return new AuthService(
-        context.container.get(TYPES.UserRepository)
+        context.get(TYPES.UserRepository)
     );
 });
 
