@@ -1,28 +1,32 @@
+import express from "express";
+import validate from "../middlewares/validate";
+import {
+    registerSchema,
+    loginSchema,
+} from "../validators/authValidator";
 
-import bcrypt from "bcrypt";
-import prisma from "../config/prisma";
-import { generateToken } from "../utils/jwt";
+export default (authService) => {
+    const router = express.Router();
 
-exports.register = async (req, res) => {
-    const { email, password, role } = req.body;
-
-    const hashed = await bcrypt.hash(password, 10);
-
-    const user = await prisma.user.create({
-        data: { email, password: hashed, role },
+    // POST /register
+    router.post("/register", validate(registerSchema), async (req, res, next) => {
+        try {
+            const result = await authService.register(req.body);
+            res.json(result);
+        } catch (err) {
+            next(err);
+        }
     });
 
-    res.json({ token: generateToken(user) });
-};
+    // POST /login
+    router.post("/login", validate(loginSchema), async (req, res, next) => {
+        try {
+            const result = await authService.login(req.body);
+            res.json(result);
+        } catch (err) {
+            next(err);
+        }
+    });
 
-exports.login = async (req, res) => {
-    const { email, password } = req.body;
-
-    const user = await prisma.user.findUnique({ where: { email } });
-
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-        return res.status(401).json({ message: "Invalid credentials" });
-    }
-
-    res.json({ token: generateToken(user) });
+    return router;
 };
