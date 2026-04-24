@@ -8,6 +8,7 @@ import container from "./container/container.js";
 import TYPES from "./container/types.js";
 import OrderController from "./controllers/OrderController.js";
 import AuthController from "./controllers/AuthController.js";
+import { connectWithRetry } from "./config/postgresdb.js";
 
 
 app.use(express.json());
