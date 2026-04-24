@@ -99,4 +99,110 @@ solid-based-project/
 ## to run prisma
  - npx prisma init
  - npx prisma migrate dev --name init
- 
+
+
+
+ # 🚀 SOLID Node.js Backend (Production Ready)
+
+## 📌 Features
+
+* SOLID Principles + Clean Architecture
+* PostgreSQL (Prisma ORM)
+* JWT Authentication
+* Role-Based Access Control (RBAC)
+* Validation (Zod)
+* Logging (Winston)
+* Rate Limiting
+* Error Handling
+* Dependency Injection (Inversify)
+* Unit Testing (Jest)
+
+---
+
+## 🛠️ Setup
+
+### 1. Clone Repo
+
+```bash
+git clone https://github.com/your-username/solid-node-postgres.git
+cd solid-node-postgres
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Setup Environment
+
+Create `.env` file:
+
+```env
+DATABASE_URL=postgresql://user:password@localhost:5432/soliddb
+JWT_SECRET=supersecret
+PORT=3000
+```
+
+### 4. Setup Database
+
+```bash
+npx prisma migrate dev --name init
+```
+
+### 5. Run Server
+
+```bash
+npm run dev
+```
+
+---
+
+## 🔐 Auth APIs
+
+### Register
+
+POST `/register`
+
+### Login
+
+POST `/login`
+
+---
+
+## 📦 Order APIs
+
+### Create Order (ADMIN only)
+
+POST `/order`
+
+---
+
+## 🧪 Run Tests
+
+```bash
+npm test
+```
+
+---
+
+## 🧠 Architecture
+
+* Controller → Service → Repository
+* Interfaces + Dependency Injection
+* Follows SOLID principles
+
+---
+
+## 🚀 Future Improvements
+
+* Dockerize app
+* Add Redis caching
+* Add CI/CD pipeline
+* Microservices architecture
+
+---
+
+## 📄 License
+
+MIT
