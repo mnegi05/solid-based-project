@@ -70,7 +70,7 @@ src/
 
 ## production-style Node.js project that includes:
 ✅ SOLID + Clean Architecture
-✅ PostgreSQL (via Prisma)
+✅ PostgreSQL
 ✅ JWT Authentication + Role-Based Access
 ✅ Validation (Zod), Logging (Winston), Rate limiting, Error handling
 ✅ DI (Inversify), Unit tests (Jest)
@@ -89,25 +89,17 @@ solid-based-project/
 │   ├── models/
 │   ├── utils/
 │   └── app.js
-├── prisma/
-│   └── schema.prisma
 ├── tests/
 ├── .env
 ├── package.json
 └── README.md
-
-## to run prisma
- - npx prisma init
- - npx prisma migrate dev --name init
-
-
 
  # 🚀 SOLID Node.js Backend (Production Ready)
 
 ## 📌 Features
 
 * SOLID Principles + Clean Architecture
-* PostgreSQL (Prisma ORM)
+* PostgreSQL
 * JWT Authentication
 * Role-Based Access Control (RBAC)
 * Validation (Zod)
@@ -147,7 +139,7 @@ PORT=3000
 ### 4. Setup Database
 
 ```bash
-npx prisma migrate dev --name init
+   psql -U admin -d all_project_backend -f src/sql-schema/ddl.sql
 ```
 
 ### 5. Run Server

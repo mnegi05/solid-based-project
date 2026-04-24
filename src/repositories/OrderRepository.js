@@ -1,12 +1,17 @@
-import prisma from "../config/prisma.js";
+import pool from "../config/postgresdb.js";
 
 class OrderRepository {
-    async save(order) {
-        return prisma.order.create({ data: order });
+    async save({ amount, status }) {
+        const result = await pool.query(
+            "INSERT INTO orders(amount, status) VALUES($1, $2) RETURNING *",
+            [amount, status]
+        );
+        return result.rows[0];
     }
 
     async findAll() {
-        return prisma.order.findMany();
+        const result = await pool.query("SELECT * FROM orders");
+        return result.rows;
     }
 }
 
