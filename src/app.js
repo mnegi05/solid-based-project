@@ -9,6 +9,7 @@ import TYPES from "./container/types.js";
 import OrderController from "./controllers/OrderController.js";
 import AuthController from "./controllers/AuthController.js";
 import { connectWithRetry } from "./config/postgresdb.js";
+import healthController from "./controllers/HealthController.js";
 
 
 app.use(express.json());
@@ -28,6 +29,7 @@ const authController = new AuthController(authService);
 
 app.use("/", orderController.router);
 app.use("/", authController.router);
+app.use("/", healthController);
 
 // Error Handler (last)
 app.use(errorHandler);
