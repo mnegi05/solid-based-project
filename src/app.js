@@ -10,6 +10,7 @@ import OrderController from "./controllers/OrderController.js";
 import AuthController from "./controllers/AuthController.js";
 import { connectWithRetry } from "./config/postgresdb.js";
 import healthController from "./controllers/HealthController.js";
+import { connectRedis } from "./config/redis.js";
 
 
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use(limiter);
 // DB
 connectDB();
 connectWithRetry();
+connectRedis();
 
 // DI
 const orderService = container.get(TYPES.OrderService);
