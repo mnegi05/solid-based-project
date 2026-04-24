@@ -1,11 +1,11 @@
 import express from "express";
-import validate from "../middlewares/validate";
-import orderSchema from "../validators/orderValidator";
+import auth from "../middlewares/authMiddleware";
+import authorize from "../middlewares/roleMiddleware";
 
 export default (orderService) => {
     const router = express.Router();
 
-    router.post("/order", validate(orderSchema), async (req, res, next) => {
+    router.post("/order", auth, authorize("ADMIN"), async (req, res, next) => {
         try {
             const order = await orderService.createOrder(req.body);
             res.json(order);
