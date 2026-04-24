@@ -96,4 +96,7 @@ solid-based-project/
 ├── package.json
 └── README.md
 
+## to run prisma
+ - npx prisma init
+ - npx prisma migrate dev --name init
  
