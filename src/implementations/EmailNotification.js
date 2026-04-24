@@ -1,4 +1,4 @@
-import INotification from "../interfaces/INotification";
+import INotification from "../interfaces/INotification.js";
 
 class EmailNotification extends INotification {
     send(message) {

@@ -1,12 +1,12 @@
 import express from "express";
 const app = express();
 
-import connectDB from "./config/db";
-import limiter from "./middlewares/rateLimiter";
-import errorHandler from "./middlewares/errorHandler";
+import connectDB from "./config/db.js";
+import limiter from "./middlewares/rateLimiter.js";
+import errorHandler from "./middlewares/errorHandler.js";
 
-import container from "./container/container";
-import TYPES from "./container/types";
+import container from "./container/container.js";
+import TYPES from "./container/types.js";
 
 app.use(express.json());
 app.use(limiter);
@@ -19,8 +19,8 @@ const orderService = container.get(TYPES.OrderService);
 const authService = container.get(TYPES.AuthService);
 
 // Controller
-const orderController = require("./controllers/OrderController")(orderService);
-const authController = require("./controllers/AuthController")(authService);
+const orderController = require("./controllers/OrderController.js")(orderService);
+const authController = require("./controllers/AuthController.js")(authService);
 
 app.use("/", orderController);
 app.use("/", authController);

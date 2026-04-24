@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt"
-import { generateToken } from "../utils/jwt";
+import { generateToken } from "../utils/jwt.js";
 
 class AuthService {
     constructor(userRepo) {

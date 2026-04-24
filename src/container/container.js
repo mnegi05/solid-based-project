@@ -1,13 +1,13 @@
 import "reflect-metadata";
 import { Container } from "inversify";
 
-import TYPES from "./types";
+import TYPES from "./types.js";
 
-import OrderService from "../services/OrderService";
-import PaymentService from "../services/PaymentService";
-import CryptoPayment from "../implementations/CryptoPayment";
-import AuthService from "../services/AuthService";
-import UserRepository from "../repositories/UserRepository";
+import OrderService from "../services/OrderService.js";
+import PaymentService from "../services/PaymentService.js";
+import CryptoPayment from "../implementations/CryptoPayment.js";
+import AuthService from "../services/AuthService.js";
+import UserRepository from "../repositories/UserRepository.js";
 
 const container = new Container();
 
@@ -17,10 +17,10 @@ container.bind(TYPES.PaymentService).toDynamicValue(() => {
 
 container.bind(TYPES.OrderService).toDynamicValue((context) => {
     return new OrderService(
-        new (require("../repositories/OrderRepository"))(),
+        new (require("../repositories/OrderRepository.js"))(),
         context.container.get(TYPES.PaymentService),
-        new (require("../services/NotificationService"))(
-            new (require("../implementations/EmailNotification"))()
+        new (require("../services/NotificationService.js"))(
+            new (require("../implementations/EmailNotification.js"))()
         )
     );
 });
