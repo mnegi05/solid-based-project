@@ -1,12 +1,12 @@
-import OrderModel from "../models/OrderModel";
+import prisma from "../config/prisma.js";
 
 class OrderRepository {
     async save(order) {
-        return await OrderModel.create(order);
+        return prisma.order.create({ data: order });
     }
 
     async findAll() {
-        return await OrderModel.find();
+        return prisma.order.findMany();
     }
 }
 
