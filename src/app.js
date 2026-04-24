@@ -16,10 +16,14 @@ connectDB();
 
 // DI
 const orderService = container.get(TYPES.OrderService);
+const authService = container.get(TYPES.AuthService);
 
 // Controller
 const orderController = require("./controllers/OrderController")(orderService);
+const authController = require("./controllers/AuthController")(authService);
+
 app.use("/", orderController);
+app.use("/", authController);
 
 // Error Handler (last)
 app.use(errorHandler);
