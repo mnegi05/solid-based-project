@@ -1,4 +1,4 @@
-import pool from "../config/postgresdb.js";
+import { pool } from "../config/postgresdb.js";
 
 class OrderRepository {
     async save({ amount, status }) {

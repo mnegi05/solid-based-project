@@ -15,6 +15,7 @@ app.use(limiter);
 
 // DB
 connectDB();
+connectWithRetry();
 
 // DI
 const orderService = container.get(TYPES.OrderService);
